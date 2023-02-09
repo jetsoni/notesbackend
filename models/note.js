@@ -1,15 +1,11 @@
 const mongoose = require('mongoose')
 
-console.log('process.argv:', process.argv);
-
 mongoose.set('strictQuery', false)
 
-// const password = process.argv[2]
-
 const url = process.env.MONGODB_URI
-//`mongodb+srv://jetsoni:${password}@cluster0.rykthl1.mongodb.net/noteApp?retryWrites=true&w=majority`
 
 console.log('connecting to', url);
+
 mongoose.connect(url)
     .then(result => {
         console.log('connected to  MongoDB');
