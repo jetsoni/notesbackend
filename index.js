@@ -22,31 +22,11 @@ app.use(requestLogger)
 app.use(cors())
 app.use(express.static('build'))
 
-let notes = [
-    {
-        id: 1,
-        content: "This is from let notes",
-        important: true
-    }
-]
-
-
-app.get('/', (req, res) => {
-    res.send('<h1>Hello World!</h1>')
-})
-
 app.get('/api/notes', (request, response) => {
     Note.find({}).then(notes => {
         response.json(notes)
     })
 })
-
-const generateId = () => {
-    const maxId = notes.length > 0
-        ? Math.max(...notes.map(n => n.id))
-        : 0
-    return maxId + 1
-}
 
 app.post('/api/notes', (request, response) => {
     const body = request.body
@@ -59,7 +39,6 @@ app.post('/api/notes', (request, response) => {
         content: body.content,
         important: body.important || false,
         // date: new Date(),
-        // id: generateId(),
     })
 
     note.save().then(savedNote => {
