@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/notes/63e2392a0e782a91dc70c8c0
+Content-Type: application/json
+
+{
+    "content": "HTML is easy",
+    "important": false
+}
